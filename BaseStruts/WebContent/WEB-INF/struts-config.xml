@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.3//EN"
+          "http://struts.apache.org/dtds/struts-config_1_3.dtd">
+
+<struts-config>  
+    <form-beans>  
+       <form-bean name="loginForm" type="com.actionForm.LoginActionForm"/>      
+       <form-bean name="dynaForm" type="org.apache.struts.action.DynaActionForm">  
+             <form-property name="username" type="java.lang.String" />  
+             <form-property name="password" type="java.lang.String"/>  
+       </form-bean> 
+       <form-bean name="userForm" type="com.actionForm.UserActionForm"/>  
+    </form-beans>  
+      
+    <action-mappings>  
+       <action path="/login"  
+              type="com.action.LoginAction"  
+              name="loginForm"  
+              scope="request"  
+              >  
+              <forward name="success" path="/login_success.jsp"/>  
+              <forward name="error" path="/login_error.jsp"/>  
+              <forward name="trans" path="/trans.jsp"/>
+       </action>
+       <action path="/DynaActionFormTestAction"  
+              type="com.action.DynaActionFormTestAction" 
+              name= "dynaForm" 
+              scope="request"  
+              >  
+              <forward name="success" path="/login_success.jsp"/>  
+              <forward name="error" path="/login_error.jsp"/>  
+       </action>  
+       <action path="/user_maint"  
+               type="com.action.UserAction"  
+               name="userForm"  
+               scope="request"  
+               parameter="command"  
+               >  
+               <forward name="list_success" path="/user/user_list.jsp"/>  
+               <forward name="del_success" path="/user/user_maint.do?command=list" redirect="true"/>  
+               <forward name="add_success"  path="/user/user_maint.do?command=list" redirect="true"/>  
+               <forward name="modify_success" path="/user/user_maint.do?command=list" redirect="true"/>  
+               <forward name="find_success"  path="/user/user_modify.jsp"/> 
+       </action>
+    </action-mappings>    
+</struts-config>   
